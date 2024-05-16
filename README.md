@@ -1,4 +1,4 @@
-# AirBnB Clone [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/luischaparroc/AirBnB_clone/blob/master/LICENSE) [![Build Status](https://travis-ci.org/luischaparroc/AirBnB_clone.svg?branch=master)](https://travis-ci.org/luischaparroc/AirBnB_clone)
+# AirBnB Clone - The Console
 ![HBnB Logo](./image/hbnb_logo.png)
 
 
@@ -46,6 +46,9 @@ The console was developed in Ubuntu 14.04LTS using python3 (version 3.4.3).
 
 The shell should work like this in interactive mode:
 
+Interactive mode
+
+```
 $ ./console.py
 (hbnb) help
 
@@ -57,9 +60,9 @@ EOF  help  quit
 (hbnb) 
 (hbnb) quit
 $
-
-But also in non-interactive mode:
-
+```
+Non Interactive mode
+```
 $ echo "help" | ./console.py
 (hbnb)
 
@@ -79,12 +82,18 @@ Documented commands (type help <topic>):
 EOF  help  quit
 (hbnb) 
 $
+```
 
-## Testing
+## Testing :gear:
 
-To fill later
+* unittest module
+* File extension ``` .py ```
+* Files and folders star with ```test_```
+* Execution command: ```python3 -m unittest discover tests```
+* or: ```python3 -m unittest tests/test_models/test_base.py```
 
-## Authors
+
+## Authors :fountain_pen:
 
 -   [BOUJIR Imane](https://github.com/Imane-Bjr)
 -   [TACHI Yassine](https://github.com/TachiYassine)
