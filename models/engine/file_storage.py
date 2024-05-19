@@ -38,20 +38,20 @@ class FileStorage:
             json.dump(my_dict, my_file)
 
     def reload(self):
-    ''' Deserializes/loads the JSON file to __objects '''
+        """ Deserializes/loads the JSON file to __objects """
 
-    my_dict = {
-        "BaseModel": BaseModel,
-        # Add other class names here if needed
-    }
-    
-    if not os.path.isfile(self.__file_path):
-        return
-    
-    with open(self.__file_path, "r") as file_path:
-        objects = json.load(file_path)
-        self.__objects = {}
-        for key in objects:
-            name = key.split(".")[0]
-            if name in my_dict:
-                self.__objects[key] = my_dict[name](**objects[key])
+        my_dict = {
+            "BaseModel": BaseModel,
+            # Add other class names here if needed
+        }
+
+        if not os.path.isfile(self.__file_path):
+            return
+
+        with open(self.__file_path, "r") as file_path:
+            objects = json.load(file_path)
+            self.__objects = {}
+            for key in objects:
+                name = key.split(".")[0]
+                if name in my_dict:
+                    self.__objects[key] = my_dict[name](**objects[key])
