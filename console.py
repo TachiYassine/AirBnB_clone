@@ -55,9 +55,11 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """
-        Called when an empty line + ENTER is entered. It shouldn't execute anything.
+        Called when an empty line + ENTER is entered.
+        It shouldn't execute anything.
         """
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
