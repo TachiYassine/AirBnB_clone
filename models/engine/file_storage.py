@@ -1,48 +1,68 @@
 #!/usr/bin/python3
 """
-Module file_storage
-Contains a class FileStorage
-that serializes instances to a JSON file and
-deserializes JSON file to instances
+Module file_storage.py
+Contains a class FileStorage that serializes instances to a JSON file and deserializes JSON file to instances.
 """
+
 import os.path
 import json
 import os
 
-
 class FileStorage:
     """
-    A class for serializing instances to a JSON file
-    and deserializing JSON file to instances
+    A class to manage serialization and deserialization of objects to/from a JSON file.
     """
 
+    # Default file path for JSON serialization
     __file_path = "file.json"
+    # Dictionary to store serialized objects
     __objects = {}
 
     def all(self):
-        """Returns the dictionary __objects"""
+        """
+        Returns the dictionary of serialized objects.
+        """
         return self.__objects
 
     def new(self, obj):
-        """Sets in __objects the obj with key <obj class name>.id"""
+        """
+        Adds a new object to the dictionary __objects.
+        """
         if obj:
             name = "{}.{}".format(obj.__class__.__name__, obj.id)
             self.__objects[name] = obj
 
     def save(self):
-        """Serializes __objects to the JSON file (path: __file_path)"""
+        """
+        Serializes __objects to the JSON file (__file_path).
+        """
         my_dict = {}
-        for keys, val in self.__objects.items():
-            my_dict[keys] = val.to_dict()
+        for key, val in self.__objects.items():
+            my_dict[key] = val.to_dict()
+
         with open(self.__file_path, "w") as my_file:
             json.dump(my_dict, my_file)
 
     def reload(self):
-        """ Deserializes/loads the JSON file to __objects """
+        """
+        Deserializes the JSON file to __objects.
+        """
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
 
         my_dict = {
             "BaseModel": BaseModel,
-            # Add other class names here if needed
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
         }
 
         if not os.path.isfile(self.__file_path):
@@ -53,5 +73,4 @@ class FileStorage:
             self.__objects = {}
             for key in objects:
                 name = key.split(".")[0]
-                if name in my_dict:
-                    self.__objects[key] = my_dict[name](**objects[key])
+                self.__objects[key] = my_dict[name](**objects[key])
