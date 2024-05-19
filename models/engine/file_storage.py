@@ -1,16 +1,19 @@
 #!/usr/bin/python3
 """
 Module file_storage.py
-Contains a class FileStorage that serializes instances to a JSON file and deserializes JSON file to instances.
+Contains a class FileStorage that serializes instances
+to a JSON file and deserializes JSON file to instances.
 """
 
 import os.path
 import json
 import os
 
+
 class FileStorage:
     """
-    A class to manage serialization and deserialization of objects to/from a JSON file.
+    A class to manage serialization and deserialization
+    of objects to/from a JSON file.
     """
 
     # Default file path for JSON serialization
