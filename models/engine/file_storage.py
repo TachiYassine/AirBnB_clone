@@ -4,9 +4,7 @@ import datetime
 import json
 import os
 
-
 class FileStorage:
-
     """Class for storing and retrieving data"""
 
     __file_path = "file.json"
@@ -56,7 +54,6 @@ class FileStorage:
             obj_dict = json.load(f)
             obj_dict = {k: self.classes()[v["__class__"]](**v)
                         for k, v in obj_dict.items()}
-            # TODO: should this overwrite or insert?
             FileStorage.__objects = obj_dict
 
     def attributes(self):
@@ -103,3 +100,13 @@ class FileStorage:
             }
         }
         return attributes
+
+    @classmethod
+    def get_file_path(cls):
+        """Returns the file path"""
+        return cls.__file_path
+
+    @classmethod
+    def get_objects(cls):
+        """Returns the objects dictionary"""
+        return cls.__objects
