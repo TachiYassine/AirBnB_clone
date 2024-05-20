@@ -9,6 +9,7 @@ import console
 from models.base_model import BaseModel
 from models import storage
 
+
 class MyHBNBCommandTest(unittest.TestCase):
 
     def setUp(self):
