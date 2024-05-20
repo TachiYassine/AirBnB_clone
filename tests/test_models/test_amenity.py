@@ -7,7 +7,7 @@ from models.amenity import Amenity
 from datetime import datetime
 
 
-class TestAmenity(unittest.TestCase):
+class MyAmenityTest(unittest.TestCase):
 
     def setUp(self):
         # In order to test our class we need to Initialize an Amenity object

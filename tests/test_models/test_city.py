@@ -7,7 +7,7 @@ from models.city import City
 from datetime import datetime
 
 
-class TestCity(unittest.TestCase):
+class MyCityTest(unittest.TestCase):
 
     def setUp(self):
         # In order to test our class we need to Initialize a City object

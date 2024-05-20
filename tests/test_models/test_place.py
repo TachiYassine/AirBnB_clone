@@ -7,7 +7,7 @@ from models.place import Place
 from datetime import datetime
 
 
-class TestPlace(unittest.TestCase):
+class MyPlaceTest(unittest.TestCase):
 
     def test_attributes_existence(self):
         """Test the existence of our attributes"""

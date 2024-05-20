@@ -7,7 +7,7 @@ from models.user import User
 from datetime import datetime
 
 
-class TestUser(unittest.TestCase):
+class MyUserTest(unittest.TestCase):
 
     def test_for_attributes_existence(self):
         """ Test the existence of our attributes """
