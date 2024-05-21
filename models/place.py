@@ -10,8 +10,7 @@ class Place(BaseModel):
     """
     This class represents our Place entity.
 
-    The Attributes we'll be using:
-
+    Attributes:
         city_id (str): The ID of the city associated with the place.
         user_id (str): The ID of the user who owns the place.
         name (str): The name of the place.
@@ -23,13 +22,10 @@ class Place(BaseModel):
         latitude (float): The latitude coordinate of the place.
         longitude (float): The longitude coordinate of the place.
         amenity_ids (list): List of amenity IDs associated with the place.
-
-    Return:
-        None
     """
 
     def __init__(self, *args, **kwargs):
-        """we will Initialize our Place instance."""
+        """Initialize our Place instance."""
         super().__init__(*args, **kwargs)
         self.city_id = ""
         self.user_id = ""

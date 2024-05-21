@@ -8,16 +8,13 @@ from models.base_model import BaseModel
 
 class State(BaseModel):
     """
-   This class represents our State entity.
+    This class represents our State entity.
 
-   The Attributes we'll be using:
+    Attributes:
         name (str): The name of the state.
-
-    Return:
-        None
     """
 
     def __init__(self, *args, **kwargs):
-        """ we will Initialize our State instance."""
+        """Initialize our State instance."""
         super().__init__(*args, **kwargs)
         self.name = ""
