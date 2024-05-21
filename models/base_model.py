@@ -26,7 +26,8 @@ class BaseModel:
         This is the constructor method for the BaseModel class,
         it initializes the instance variables and won't return any value.
 
-        If keyword arguments are provided, they are used to set the instance attributes.
+        If keyword arguments are provided,
+        they are used to set the instance attributes.
         Otherwise, default values are used for id, created_at, and updated_at.
 
         The Args we'll be using :
@@ -36,7 +37,8 @@ class BaseModel:
         The Attributes we'll be using:
             id (str): Unique identifier for the instance.
             created_at (datetime): Timestamp when the instance was created.
-            updated_at (datetime): Timestamp when the instance was last updated.
+            updated_at (datetime): Timestamp when the instance
+            was last updated.
 
         """
 
@@ -68,6 +70,7 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             models.storage.new(self)
+
     def __str__(self) -> str:
         """
         This method returns a string representation of the instance:
@@ -92,7 +95,10 @@ class BaseModel:
         What this method Returns:
             dict: Dictionary representation of the instance.
         """
-        # Create a copy of __dict__ to ensure only instance attributes set are returned
+        """
+        Create a copy of __dict__ to ensure only 
+        instance attributes set are returned
+        """
         my_dict = self.__dict__.copy()
         # Add __class__ key with the class name of the object
         my_dict["__class__"] = type(self).__name__

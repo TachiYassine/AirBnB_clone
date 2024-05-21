@@ -4,6 +4,7 @@ import datetime
 import json
 import os
 
+
 class FileStorage:
     """Class for storing and retrieving data"""
 

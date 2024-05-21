@@ -61,7 +61,10 @@ class MyHBNBCommandTest(unittest.TestCase):
         self.storage.new(instance)
         with patch('sys.stdout', new=StringIO()) as fake_out:
             self.console.onecmd(f'update BaseModel {instance.id} name "Test"')
-            self.assertEqual(self.storage.all()[f"BaseModel.{instance.id}"].name, "Test")
+            self.assertEqual(
+                self.storage.all()[f"BaseModel.{instance.id}"].name,
+                "Test"
+            )
 
     def test_update_dict(self):
         """Test the update command with a dictionary."""
@@ -70,8 +73,14 @@ class MyHBNBCommandTest(unittest.TestCase):
         s_dict = '{"name": "Test", "number": 89}'
         with patch('sys.stdout', new=StringIO()) as fake_out:
             self.console.update_dict("BaseModel", instance.id, s_dict)
-            self.assertEqual(self.storage.all()[f"BaseModel.{instance.id}"].name, "Test")
-            self.assertEqual(self.storage.all()[f"BaseModel.{instance.id}"].number, 89)
+            self.assertEqual(
+                self.storage.all()[f"BaseModel.{instance.id}"].name,
+                "Test"
+            )
+            self.assertEqual(
+                self.storage.all()[f"BaseModel.{instance.id}"].number,
+                89
+            )
 
     def test_quit(self):
         """Test the quit command."""
