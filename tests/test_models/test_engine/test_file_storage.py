@@ -25,6 +25,7 @@ class TestFileStorage(unittest.TestCase):
         # Clean up the file after each test
         if os.path.exists(self.file_path):
             os.remove(self.file_path)
+        FileStorage.__objects.clear()
 
     def test_file_storage_init(self):
         """Test initialization and class attributes"""
