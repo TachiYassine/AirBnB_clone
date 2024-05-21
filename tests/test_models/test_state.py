@@ -7,7 +7,7 @@ from models.state import State
 from datetime import datetime
 
 
-class TestState(unittest.TestCase):
+class MyStateTest(unittest.TestCase):
 
     def setUp(self):
         # In order to test our class we need to Initialize a state instance

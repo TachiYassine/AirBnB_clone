@@ -49,16 +49,38 @@ class FileStorage:
 
     def reload(self):
         """Reloads the stored objects"""
-        if not os.path.isfile(FileStorage.__file_path):
-            return
-        try:
-            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
-                obj_dict = json.load(f)
-                obj_dict = {k: self.classes()[v["__class__"]](**v)
-                            for k, v in obj_dict.items()}
-                FileStorage.__objects = obj_dict
-        except (json.JSONDecodeError, IOError):
-            pass
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+        filepath = FileStorage.__file_path
+        data = FileStorage.__objects
+        if os.path.exists(filepath):
+            try:
+                with open(filepath) as f:
+                    loaded_data = json.load(f)
+                for key, value in loaded_data.items():
+                    # Instantiate objects based on class names
+                    if "BaseModel" in key:
+                        data[key] = BaseModel(**value)
+                    elif "User" in key:
+                        data[key] = User(**value)
+                    elif "Place" in key:
+                        data[key] = Place(**value)
+                    elif "State" in key:
+                        data[key] = State(**value)
+                    elif "City" in key:
+                        data[key] = City(**value)
+                    elif "Amenity" in key:
+                        data[key] = Amenity(**value)
+                    elif "Review" in key:
+                        data[key] = Review(**value)
+            except json.decoder.JSONDecodeError:
+                # Handle invalid JSON data
+                data.clear()  # Initialize to empty dictionary
 
     def attributes(self):
         """Returns the valid attributes and their types for classname"""
