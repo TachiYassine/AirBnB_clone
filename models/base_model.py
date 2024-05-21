@@ -2,8 +2,10 @@
 """
 The class BaseModel will be the backbone of our project
 and will have all the common aspects (attributes, methods)
-that the other classes share. It will also be responsible for
-the initialization and conversion (JSON <=> Python), mainly called
+that the other classes share.
+It will also be responsible for
+the initialization and conversion (JSON <=> Python),
+mainly called
 serialization and deserialization, and will
 have other methods that will be explained later.
 """
@@ -16,19 +18,23 @@ import models
 class BaseModel:
     """
     The BaseModel class serves as the backbone of our project,
-    encapsulating common attributes and methods shared by other classes.
-    It is responsible for initialization, serialization, deserialization,
+    encapsulating common attributes and methods
+    shared by other classes.
+    It is responsible for initialization,
+    serialization, deserialization,
     and other functionalities to be explained later.
     """
 
     def __init__(self, *args, **kwargs) -> None:
         """
         This is the constructor method for the BaseModel class,
-        it initializes the instance variables and won't return any value.
+        it initializes the instance variables
+        and won't return any value.
 
         If keyword arguments are provided,
         they are used to set the instance attributes.
-        Otherwise, default values are used for id, created_at, and updated_at.
+        Otherwise, default values are used for
+        id, created_at, and updated_at.
 
         The Args we'll be using :
             *args: Variable length argument list (it was not used).
@@ -53,7 +59,8 @@ class BaseModel:
             What this method Returns:
                 A datetime object.
             """
-            return datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.%f")
+            return datetime.strptime(date_str,
+                                     "%Y-%m-%dT%H:%M:%S.%f")
 
         if kwargs:
             for key, value in kwargs.items():
@@ -73,15 +80,18 @@ class BaseModel:
 
     def __str__(self) -> str:
         """
-        This method returns a string representation of the instance:
+        This method returns a string
+        representation of the instance:
         should print: [<class name>] (<self.id>) <self.__dict__>
         """
         return "[{}] ({}) {}".\
-            format(type(self).__name__, self.id, self.__dict__)
+            format(type(self).__name__,
+                   self.id, self.__dict__)
 
     def save(self) -> None:
         """
-        This method updates the public instance attribute updated_at
+        This method updates the public instance
+        attribute updated_at
         with the current datetime and saves the instance.
         """
         self.updated_at = datetime.now()
@@ -89,7 +99,8 @@ class BaseModel:
 
     def to_dict(self) -> dict:
         """
-        This method returns a dictionary containing all keys/values
+        This method returns a dictionary containing
+        all keys/values
         of __dict__ of the instance.
 
         What this method Returns:
@@ -99,6 +110,7 @@ class BaseModel:
         Create a copy of __dict__ to ensure only 
         instance attributes set are returned
         """
+
         my_dict = self.__dict__.copy()
         # Add __class__ key with the class name of the object
         my_dict["__class__"] = type(self).__name__
