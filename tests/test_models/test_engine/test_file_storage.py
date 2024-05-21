@@ -9,7 +9,7 @@ import json
 import os
 
 
-class TestFileStorage(unittest.TestCase):
+class MyFileStorageTest(unittest.TestCase):
 
     def setUp(self):
         """Set up for each test"""
@@ -25,12 +25,12 @@ class TestFileStorage(unittest.TestCase):
         # Clean up the file after each test
         if os.path.exists(self.file_path):
             os.remove(self.file_path)
-        FileStorage.__objects.clear()
+        self.storage.get_objects().clear()  # Clear objects dictionary
 
     def test_file_storage_init(self):
         """Test initialization and class attributes"""
         filepath = FileStorage.get_file_path()
-        _objs = FileStorage.get_objects()
+        _objs = self.storage.get_objects()  # Access objects via instance
         self.assertEqual(filepath, "file.json")
         self.assertIsInstance(filepath, str)
         self.assertIsInstance(_objs, dict)
