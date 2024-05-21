@@ -36,42 +36,37 @@ class BaseModel:
         Otherwise, default values are used for
         id, created_at, and updated_at.
 
-        The Args we'll be using :
-            *args: Variable length argument list (it was not used).
+        Args:
+            *args: Variable length argument list (not used).
             **kwargs: Arbitrary keyword arguments for instance attributes.
 
-        The Attributes we'll be using:
+        Attributes:
             id (str): Unique identifier for the instance.
             created_at (datetime): Timestamp when the instance was created.
             updated_at (datetime): Timestamp when the instance
-            was last updated.
-
+                                   was last updated.
         """
 
         def parse_datetime(date_str: str) -> datetime:
             """
-            Using this method we will avoid repeating the same code line
-            and will help us Parse a datetime string into a datetime object.
+            Parse a datetime string into a datetime object.
 
-            The Args used :
-                date_str: String representation of the datetime.
+            Args:
+                date_str (str): String representation of the datetime.
 
-            What this method Returns:
-                A datetime object.
+            Returns:
+                datetime: A datetime object.
             """
-            return datetime.strptime(date_str,
-                                     "%Y-%m-%dT%H:%M:%S.%f")
+            return datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.%f")
 
         if kwargs:
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
-                if key == "created_at":
-                    self.__dict__["created_at"] = parse_datetime(value)
-                elif key == "updated_at":
-                    self.__dict__["updated_at"] = parse_datetime(value)
+                if key in ("created_at", "updated_at"):
+                    self.__dict__[key] = parse_datetime(value)
                 else:
-                    self.__dict__[key] = kwargs[key]
+                    self.__dict__[key] = value
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -80,42 +75,32 @@ class BaseModel:
 
     def __str__(self) -> str:
         """
-        This method returns a string
-        representation of the instance:
-        should print: [<class name>] (<self.id>) <self.__dict__>
+        Return a string representation of the instance.
+
+        Returns:
+            str: String representation of the instance in the format
+                 [<class name>] (<self.id>) <self.__dict__>.
         """
-        return "[{}] ({}) {}".\
-            format(type(self).__name__,
-                   self.id, self.__dict__)
+        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
 
     def save(self) -> None:
         """
-        This method updates the public instance
-        attribute updated_at
-        with the current datetime and saves the instance.
+        Update the public instance attribute updated_at
+        with the current datetime and save the instance.
         """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self) -> dict:
         """
-        This method returns a dictionary containing
-        all keys/values
+        Return a dictionary containing all keys/values
         of __dict__ of the instance.
 
-        What this method Returns:
+        Returns:
             dict: Dictionary representation of the instance.
         """
-        """
-        Create a copy of __dict__ to ensure only 
-        instance attributes set are returned
-        """
-
         my_dict = self.__dict__.copy()
-        # Add __class__ key with the class name of the object
         my_dict["__class__"] = type(self).__name__
-        # Convert created_at and updated_at to string object in ISO format
         my_dict["created_at"] = my_dict["created_at"].isoformat()
         my_dict["updated_at"] = my_dict["updated_at"].isoformat()
-
         return my_dict
