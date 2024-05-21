@@ -13,6 +13,7 @@ have other methods that will be explained later.
 import uuid
 from datetime import datetime
 import models
+from models import storage
 
 
 class BaseModel:
@@ -89,7 +90,7 @@ class BaseModel:
         with the current datetime and save the instance.
         """
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self) -> dict:
         """
