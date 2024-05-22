@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-"""Unit test for State"""
+""" This py file will make all the unit tests
+for our class State and its objects"""
 
 import unittest
 from models.state import State
 from datetime import datetime
 
 
-class StateTestCase(unittest.TestCase):
+class MyStateTest(unittest.TestCase):
     """Class for testing State"""
 
     def setUp(self):

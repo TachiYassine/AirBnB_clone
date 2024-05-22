@@ -10,7 +10,7 @@ from datetime import datetime
 class MyCityTest(unittest.TestCase):
 
     def setUp(self):
-        # In order to test our class we need to Initialize a City object
+        # In order to test our class we need to Initialize a City instance
         self.city = City()
 
     def test_for_attributes_existence(self):
@@ -38,6 +38,20 @@ class MyCityTest(unittest.TestCase):
         self.assertEqual(city_dict['updated_at'], self.city.updated_at.isoformat())
         self.assertEqual(city_dict['state_id'], self.city.state_id)
         self.assertEqual(city_dict['name'], self.city.name)
+
+    def test_my_city(self):
+        """ Test existence and types of attributes in a single method """
+        new = City()
+        self.assertTrue(hasattr(new, "id"))
+        self.assertTrue(hasattr(new, "created_at"))
+        self.assertTrue(hasattr(new, "updated_at"))
+        self.assertTrue(hasattr(new, "state_id"))
+        self.assertTrue(hasattr(new, "name"))
+        self.assertIsInstance(new.id, str)
+        self.assertIsInstance(new.created_at, datetime)
+        self.assertIsInstance(new.updated_at, datetime)
+        self.assertIsInstance(new.state_id, str)
+        self.assertIsInstance(new.name, str)
 
 
 if __name__ == '__main__':
