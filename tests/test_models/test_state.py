@@ -18,7 +18,7 @@ class MyStateTest(unittest.TestCase):
         del self.state
 
     def test_instance(self):
-        """TVerifies the instance and attributes,
+        """Verifies the instance and attributes,
         ensuring they exist and are of the correct type."""
         self.assertIsInstance(self.state, State)
         self.assertTrue(hasattr(self.state, "id"))
@@ -35,7 +35,7 @@ class MyStateTest(unittest.TestCase):
         string = str(self.state)
         self.assertIn("[State]", string)
         self.assertIn(f"({self.state.id})", string)
-        self.assertIn("name", string)
+        self.assertIn(self.state.name, string)
 
     def test_to_dict(self):
         """Ensures the to_dict method returns a dictionary
@@ -45,6 +45,7 @@ class MyStateTest(unittest.TestCase):
         self.assertIn("id", state_dict)
         self.assertIn("created_at", state_dict)
         self.assertIn("updated_at", state_dict)
+        self.assertIn("name", state_dict)
         self.assertIn("__class__", state_dict)
         self.assertEqual(state_dict["__class__"], "State")
 
