@@ -17,4 +17,7 @@ class State(BaseModel):
     def __init__(self, *args, **kwargs):
         """Initialize our State instance."""
         super().__init__(*args, **kwargs)
-        self.name = ""
+        if "name" in kwargs:
+            self.name = kwargs["name"]
+        else:
+            self.name = ""

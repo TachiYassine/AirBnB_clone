@@ -1,17 +1,5 @@
-#!/usr/bin/python3
-"""
-The class BaseModel will be the backbone of our project
-and will have all the common aspects (attributes, methods)
-that the other classes share.
-It will also be responsible for
-the initialization and conversion (JSON <=> Python),
-mainly called
-serialization and deserialization, and will
-have other methods that will be explained later.
-"""
-
-import uuid
 from datetime import datetime
+import uuid
 from models import storage
 
 
@@ -90,6 +78,7 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         storage.save()
+        storage.new(self)
 
     def to_dict(self) -> dict:
         """
