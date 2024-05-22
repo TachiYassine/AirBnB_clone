@@ -24,18 +24,18 @@ class MyStateTest(unittest.TestCase):
         self.assertTrue(hasattr(self.state, "id"))
         self.assertTrue(hasattr(self.state, "created_at"))
         self.assertTrue(hasattr(self.state, "updated_at"))
-        self.assertTrue(hasattr(self.state, "name"))
+        self.assertTrue(hasattr(self.state, "name"))  # This line is already present
         self.assertIsInstance(self.state.id, str)
         self.assertIsInstance(self.state.created_at, datetime)
         self.assertIsInstance(self.state.updated_at, datetime)
-        self.assertIsInstance(self.state.name, str)
+        self.assertIsInstance(self.state.name, str)  # This line is already present
 
     def test_str(self):
         """Test the __str__ method of State."""
         string = str(self.state)
         self.assertIn("[State]", string)
         self.assertIn(f"({self.state.id})", string)
-        self.assertIn(self.state.name, string)
+        self.assertIn(self.state.name, string)  # Check if name attribute is present
 
     def test_to_dict(self):
         """Ensures the to_dict method returns a dictionary
@@ -45,7 +45,7 @@ class MyStateTest(unittest.TestCase):
         self.assertIn("id", state_dict)
         self.assertIn("created_at", state_dict)
         self.assertIn("updated_at", state_dict)
-        self.assertIn("name", state_dict)
+        self.assertIn("name", state_dict)  # Check if name attribute is present
         self.assertIn("__class__", state_dict)
         self.assertEqual(state_dict["__class__"], "State")
 
@@ -61,3 +61,4 @@ class MyStateTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
