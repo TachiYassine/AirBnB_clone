@@ -16,8 +16,5 @@ class Amenity(BaseModel):
     Return:
         None
     """
+    name = ""
 
-    def __init__(self, *args, **kwargs):
-        """we will Initialize our Amenity instance."""
-        super().__init__(*args, **kwargs)
-        self.name = ""

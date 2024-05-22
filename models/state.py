@@ -13,11 +13,4 @@ class State(BaseModel):
     Attributes:
         name (str): The name of the state.
     """
-
-    def __init__(self, *args, **kwargs):
-        """Initialize our State instance."""
-        super().__init__(*args, **kwargs)
-        if "name" in kwargs:
-            self.name = kwargs["name"]
-        else:
-            self.name = ""
+    name = ""

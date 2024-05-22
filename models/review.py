@@ -15,10 +15,7 @@ class Review(BaseModel):
         user_id (str): The ID of the user who created the review.
         text (str): The text content of the review.
     """
+    place_id = ""
+    user_id = ""
+    text = ""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize our Review instance."""
-        super().__init__(*args, **kwargs)
-        self.place_id = ""
-        self.user_id = ""
-        self.text = ""
